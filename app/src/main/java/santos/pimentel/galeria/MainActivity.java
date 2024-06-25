@@ -3,9 +3,11 @@ package santos.pimentel.galeria;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.Toolbar;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -32,8 +34,21 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.main_activity_tb, menu);
+        inflater.inflate(R.menu.main_activity, menu);
         return true;
+    }
+
+    public boolean onOptionsItemSelected (@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.opCamera:
+                dispatchTakePictureIntent();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private void dispatchTakePictureIntent() {
     }
 
     private void setSupportActionBar(Toolbar toolbar) {

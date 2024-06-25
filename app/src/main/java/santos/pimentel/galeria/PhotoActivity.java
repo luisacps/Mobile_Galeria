@@ -1,9 +1,13 @@
 package santos.pimentel.galeria;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.Toolbar;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
@@ -30,6 +34,22 @@ public class PhotoActivity extends AppCompatActivity {
         // nesse caso, o botão de volta retorna para a MainActivity
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
+    }
+    @Override
+    public boolean onCreateOptionMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.photo_activity, menu);
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.opShare:
+                sharePhoto();
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     private void setSupportActionBar(Toolbar toolbar) {
